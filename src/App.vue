@@ -33,18 +33,18 @@
 
     @keyframes twinkle {
         0% {
-            box-shadow: 0 0 0.06rem #00aa00 inset;
+            box-shadow: 0 0 0.06rem #036e03 inset;
         }
         100% {
-            box-shadow: 2px 2px 0.36rem #00aa00 inset;    
+            box-shadow: 2px 2px 0.36rem #036e03 inset;    
         }
     }
     @-webkit-keyframes twinkle {
         0% {
-            box-shadow: 0 0 0.06rem #00aa00 inset;
+            box-shadow: 0 0 0.06rem #036e03 inset;
         }
         100% {
-            box-shadow: 2px 2px 0.36rem #00aa00 inset;    
+            box-shadow: 2px 2px 0.36rem #036e03 inset;    
         }
     }
 </style>

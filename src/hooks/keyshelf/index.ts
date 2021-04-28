@@ -55,7 +55,7 @@ function onCreateReferenceWords(words?: string[]): void {
             usable_words.splice(index, 1);
         }
     }
-    useKeyfieldHook(_contrast, false).forEach((v, i) => {
+    useKeyfieldHook(_contrast).forEach((v, i) => {
         data.contrast[i] = v;
         if (i === 0) {
             data.contrast[0].variation = EKEY_VARIATION.POINT;

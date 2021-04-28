@@ -13,10 +13,8 @@ interface IKeyfield {
     readonly keycodes: Array<number>;
     readonly location: number;
     letters: Array<string>;
-    readonly appendix: string;
-    color: EKEY_COLOR;
+    border: EKEY_COLOR;
     press: boolean;
-    multiple: boolean;
     anim: boolean;
     variation: EKEY_VARIATION;
     shit: boolean;

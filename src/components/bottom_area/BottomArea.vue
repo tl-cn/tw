@@ -12,13 +12,8 @@
             <select-box name="categories" :list="categories" @eventHandler="onSelectOptionEvent" />
             <select-box name="durations" :list="durations" @eventHandler="onSelectOptionEvent" />
         </div>
-        <div class="keyboard-setting" @click="onRemindClick">
-            <div class="selected-box">
-                <div class="slide-layer" :class="{ active: remind }"><span></span></div>
-                <span class="span-text yes" :class="{ active: remind }"></span>
-                <span class="span-text no"></span>
-            </div>
-            <div class="setting-text">提示键盘</div>
+        <div class="key-guidance" @click="onRemindClick">
+            <div class="float-layer" :class="{ active: remind }"><span></span></div>
         </div>
     </div>
 </template>
@@ -53,6 +48,14 @@
         justify-items: center;
         align-items: center;
 
+        &::before {
+            content: '广州点亮网络科技有限公司©版本所有';
+            position: absolute;
+            top: -0.2rem;
+            right: 0;
+            font-size: 0.1rem;
+            color: #999;
+        }
         .progress-board {
             display: flex;
 
@@ -92,72 +95,40 @@
             display: grid;
             grid-template-columns: repeat(4, auto);
         }
-        .keyboard-setting {
-            cursor: pointer;
-            display: flex;
-            align-items: center;
+        .key-guidance {
+            position: relative;
+            width: 0.8rem;
+            height: 0.2rem;
+            border-radius: 0.1rem;
+            background: #999 url(~@/assets/images/img_tips.png) no-repeat;
+            background-size: 0.55rem 0.1rem;
+            background-position: 0.2rem center;
 
-            .selected-box {
-                position: relative;
-                width: 0.3rem;
-                height: 0.15rem;
-                background-color: #999;
-                border-radius: 0.075rem;
+            .float-layer {
+                position: absolute;
+                width: 0.22rem;
+                height: 100%;
+                border-radius: 0.15rem;
+                font-size: 0;
                 padding: 0 0.05rem;
                 display: flex;
-                justify-content: space-between;
+                justify-content: flex-end;
                 align-items: center;
+                transition: width 0.3s ease;
 
-                .span-text {
+                &.active {
+                    width: 100%;
+                    background: #87b630 url(~@/assets/images/img_tips.png) no-repeat;
+                    background-position: 0.05rem center;
+                    background-size: 0.55rem 0.1rem;
+                }
+                span {
                     display: inline-block;
-                    width: 0.1rem;
-                    height: 0.1rem;
-
-                    &.yes {
-                        background: url(~@/assets/images/img_yes.png) center/contain no-repeat;
-                    }
-                    &.no {
-                        background: url(~@/assets/images/img_no.png) center/contain no-repeat;
-                    }
-                    &.active {
-                        position: relative;
-                        z-index: 1;
-                    }
+                    width: 0.12rem;
+                    height: 0.12rem;
+                    border-radius: 50%;
+                    background-color: #fff;
                 }
-                .slide-layer {
-                    position: absolute;
-                    left: 0;
-                    width: 0.16rem;
-                    height: 100%;
-                    font-size: 0;
-                    background-color: #999;
-                    border-radius: 0.075rem;
-                    padding: 0 0.03rem;
-                    transition: all 0.3s ease;
-                    display: flex;
-                    justify-content: flex-end;
-                    align-items: center;
-
-                    &.active {
-                        width: 100%;
-                        background-color: #4ecb2f;
-                    }
-                    span {
-                        position: relative;
-                        z-index: 10;
-                        display: inline-block;
-                        width: 0.1rem;
-                        height: 0.1rem;
-                        background-color: #fff;
-                        border-radius: 50%;
-                    }
-                }
-            }
-            .setting-text {
-                font-size: 0.12rem;
-                color: #999;
-                font-weight: bold;
-                padding-left: 0.05rem;
             }
         }
     }

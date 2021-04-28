@@ -3,7 +3,8 @@ enum EKEY_COLOR {
     ORANGE = 'orange',
     GREEN = 'green',
     YELLOW = 'yellow',
-    BLUE = 'blue'
+    BLUE = 'blue',
+    PURPLE = 'purple'
 }
 
 enum EKEY_VARIATION {
@@ -12,7 +13,10 @@ enum EKEY_VARIATION {
     CAUTION = 'caution',                // 错误
     POINT = 'point',                    // 闪烁
     CORRECT = 'correct',                // 正确
-    OVERTIME = 'overtime'               // 超时
+    OVERTIME = 'overtime',              // 超时
+    PALE = 'pale',
+    GREY = 'grey',
+    ASHY = 'ashy'
 }
 
 enum ESORT {

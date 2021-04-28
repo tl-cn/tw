@@ -1,14 +1,20 @@
 <template>
     <div class="keyfield-page">
         <div class="keyarea" :class="[
-            keyfield.color, 
+            keyfield.border, 
             keyfield.anim ? 'anim' : '',
-            keyfield.multiple ? 'multiples' : '', 
             keyfield.press ? 'press' : '',
-            (keyfield.variation === 'guidance' || keyfield.variation === 'caution') && !$store.state.prompt ? '' : keyfield.variation
+            !$store.state.prompt && (keyfield.variation === 'guidance' || keyfield.variation === 'caution') ? '' : keyfield.variation
         ]">
-            <div class="key-title">{{ keyfield.letters.join(' ') }}</div>
-            <div class="key-fn" v-if="keyfield.multiple">{{ keyfield.appendix }}</div>
+            <div class="key-text"
+                v-for="(letter, index) in keyfield.letters"
+                :key="'l' + index"
+                :class="{
+                    backspace: letter === 'Backspace',
+                    win: letter === 'Win',
+                    menu: letter === 'Menu'
+                }"
+            >{{ letter === 'Win' || letter === 'Menu' ? '' : letter }}</div>
         </div>
     </div>
 </template>
@@ -41,7 +47,7 @@
         }
     }
 
-    $effect-map: ('orange': #ff6666, 'green': #00aa00, 'yellow': #bbbb00, 'blue': #4488ff);
+    $effect-map: ('orange': #a14545, 'green': #048304, 'yellow': #8a8a04, 'blue': #385fa3, 'purple': #984e9b);
 
     .keyfield-page {
         padding: 0.02rem;
@@ -51,28 +57,44 @@
             height: 100%;
             border-radius: 0.03rem;
             cursor: pointer;
-            display: grid;
+            display: flex;
+            flex-direction: column-reverse;
+            justify-content: center;
+            align-items: center;
 
             &.anim {
                 transition: all 0.3s ease;
             }
-            &.multiples {
-                grid-template-rows: 3fr 2fr;
-            }
-            .key-title {
-                font-size: 0.145rem;
+            .key-text {
+                font-size: 0.15rem;
                 color: #ddd;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-            .key-fn {
-                font-size: 0.08rem;
-                color: #666;
-                padding: 0.03rem;
-                display: flex;
-                justify-content: flex-end;
-                align-items: flex-end;
+
+                &:nth-of-type(2) {
+                    margin-bottom: 5px;
+                }
+                &.backspace {
+                    position: relative;
+                    top: -0.05rem;
+
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        bottom: -0.1rem;
+                        width: 0.5rem;
+                        height: 0.1rem;
+                        background: url(~@/assets/icons/ico_backspace.png) center/contain no-repeat;
+                    }
+                }
+                &.win {
+                    width: 0.25rem;
+                    height: 0.2rem;
+                    background: url(~@/assets/icons/ico_win.png) center/contain no-repeat;
+                }
+                &.menu {
+                    width: 0.2rem;
+                    height: 0.24rem;
+                    background: url(~@/assets/icons/ico_menu.png) center/contain no-repeat;
+                }
             }
         }
         @each $name, $color in $effect-map {
@@ -85,14 +107,14 @@
 
             &::before {                                                // 点击提示
                 content: '';
-                $l: 0.2rem;
+                $l: 0.4rem;
                 position: absolute;
                 left: 50%;
                 top: 50%;
                 width: $l;
                 height: $l;
                 border-radius: 50%;
-                box-shadow: 2px 2px 0.1rem #87b62f inset;          
+                box-shadow: 2px 2px 0.2rem #87b62f inset;          
                 transform: translate(-50%, -50%);
             }
         }
@@ -105,11 +127,11 @@
                 width: calc(100% - 0.05rem);
                 height: 100%;
                 border-radius: 0.03rem;
-                font-size: 0.13rem;
+                font-size: 0.15rem;
                 font-weight: bold;
                 color: #fff;
                 -webkit-text-stroke: 2px #f1352c;
-                background: linear-gradient(135deg, rgba(134, 181, 47, 0.1), rgba(239, 52, 42, 0.3));
+                background: linear-gradient(145deg, rgba(134, 181, 47, 0.1), rgba(239, 52, 42, 0.3));
                 padding-right: 0.05rem;
                 display: flex;
                 justify-content: flex-end;
@@ -130,10 +152,19 @@
             }
         }
         .correct {
-            background-color: rgba(10, 239, 10, 0.7);                 // 目标正确
+            background-color: rgba(10, 239, 10, 0.5);                  // 目标正确
         }
         .overtime {
-            background-color: rgba(245, 167, 27, 1);                  // 目标超时
+            background-color: rgba(245, 167, 27, 0.8);                  // 目标超时
+        }
+        .pale {
+            background-color: #333;
+        }
+        .grey {
+            background-color: #1f1f1f;
+        }
+        .ashy {
+            background-color: #1b1b1b;
         }
     }
 </style>

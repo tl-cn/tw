@@ -40,13 +40,13 @@
         border-radius: 0.06rem;
         background-color: #000;
         box-shadow: 0 0 0.08rem #fff inset;
-        margin: 0.4rem 0 0.5rem;
+        margin: 0.4rem 0 0.7rem;
 
         .panel-area {
-            width: 7.2rem;
+            width: 9rem;
             display: grid;
             grid-template-columns: repeat(90, 1fr);
-            grid-auto-rows: 0.48rem;
+            grid-auto-rows: 0.6rem;
 
             .keyfield {
                 grid-column: span 6;

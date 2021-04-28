@@ -54,7 +54,7 @@
             });
 
             function onLayerClick(): void {
-                // data.show = !data.show;
+                data.show = !data.show;
             }
 
             function onShow(option: boolean): void {

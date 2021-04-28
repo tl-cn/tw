@@ -28,8 +28,8 @@
         display: flex;
 
         .key-panel {
-            width: 0.48rem;
-            height: 0.48rem;
+            width: 0.6rem;
+            height: 0.6rem;
         }
     }
 </style>
